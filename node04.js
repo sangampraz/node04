@@ -38,7 +38,7 @@ app.post("/api/cars", (req, res) => {
   const { brand, make, year, color } = req.body;
 
   const newCar = {
-    id: cars.length > 0 ? Math.max(...cars.map(c => c.id)) + 1 : 1,
+    id: cars.length > 0 ? Math.max(...cars.map(c => c.id)) + 1 : 1, 
     brand,
     make,
     year: Number(year),
@@ -62,7 +62,7 @@ app.put("/api/cars/:id", (req, res) => {
   cars[index] = {
     ...cars[index],
     ...req.body,
-    id
+    id                      
   };
 
   res.json(cars[index]);

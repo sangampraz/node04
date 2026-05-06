@@ -10,7 +10,7 @@
 
   <h2>Add a Car</h2>
 
-  <form id="carForm" method="POST" action="/api/cars">
+  <form id="carForm">
     <input type="text" id="brand" placeholder="Brand" required>
     <input type="text" id="make" placeholder="Make" required>
     <input type="number" id="year" placeholder="Year" required>
@@ -56,7 +56,7 @@
         tableBody.appendChild(row);
       });
     }
-/*
+
     form.addEventListener("submit", async event => {
       event.preventDefault();
 
@@ -78,7 +78,7 @@
       form.reset();
       loadCars();
     });
-*/
+
     loadCars();
   </script>
 </body>
