@@ -4,10 +4,10 @@
 
 ## Overview
 This project is a simple Cars App build using HTML, JavaScript, Node.js, and Exptess. This application allows users to:
-**** view all cars
-**** add new cars
-**** update existing cars
-**** delete cars
+* view all cars
+* add new cars
+* update existing cars
+* delete cars
 The frontend communicates witht the backend API using JavaScript fetch() requets. 
 
 ## Features Added
