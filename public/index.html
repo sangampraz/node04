@@ -27,6 +27,7 @@
         <th>Make</th>
         <th>Year</th>
         <th>Color</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody id="carsTableBody"></tbody>
@@ -51,6 +52,10 @@
           <td>${car.make}</td>
           <td>${car.year}</td>
           <td>${car.color}</td>
+          <td>
+            <button onclick="updateCar(${car.id})">Update</button>
+            <button onclick="deleteCar(${car.id})">Delete</button>
+          </td>
         `;
 
         tableBody.appendChild(row);
@@ -78,6 +83,45 @@
       form.reset();
       loadCars();
     });
+
+    async function deleteCar(id) {
+      const confirmDelete = confirm("Are you sure you want to delete this car?");
+
+      if (!confirmDelete) {
+        return;
+      }
+
+      await fetch(`/api/cars/${id}`, {method: "DELETE"});
+
+      loadCars();
+    }
+
+    async function updateCar(id) {
+      const response = await fetch(`/api/cars/${id}`);
+      const car = await response.json();
+
+      const updatedBrand = prompt("Enter new brand:", car.brand);
+      const updatedMake = prompt("Enter new make:", car.make);
+      const updatedYear = prompt("Enter new year:", car.year);
+      const updatedColor = prompt("Enter new color:", car.color);
+
+      const updatedCar = {
+        brand: updatedBrand,
+        make: updatedMake,
+        year: updatedYear,
+        color: updatedColor
+      };
+
+      await fetch(`/api/cars/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(updatedCar)
+      });
+      
+      loadCars();
+    }
 
     loadCars();
   </script>

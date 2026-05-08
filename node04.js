@@ -62,7 +62,8 @@ app.put("/api/cars/:id", (req, res) => {
   cars[index] = {
     ...cars[index],
     ...req.body,
-    id                      
+    year: Number(req.body.year),
+    id: id                      
   };
 
   res.json(cars[index]);
@@ -78,6 +79,13 @@ app.delete("/api/cars/:id", (req, res) => {
   }
 
   const deletedCar = cars.splice(index, 1)[0];
+
+  cars = cars.map((car, index) => {
+    return {
+      ...car,
+      id: index + 1
+    };
+  });
 
   res.json({
     message: "Car deleted",
